@@ -1,6 +1,7 @@
-=====================================================
+
 Lab 001 - VMware Foundation
 =====================================================
+
 Lessons Learned
 =====================================================
 Intel VT-x must be enabled before VMware can efficiently run 64-bit operating systems.
@@ -12,14 +13,14 @@ A Host-only network allows virtual machines to communicate with each other while
 Using an isolated subnet prevents accidental interaction with production devices on the home network.
 
 VMware's DHCP service can be used during the initial deployment phase before replacing it with a Windows DHCP server.
-=====================================================
+
 Objective
 =====================================================
 
 Build and configure the virtualization platform that
 will host the offensive security home lab.
 
-=====================================================
+
 Environment
 =====================================================
 
@@ -38,7 +39,7 @@ VMware Workstation Pro 25H2u1
 Lab Storage:
 E:\CyberSecurity Labs
 
-=====================================================
+
 Current State
 =====================================================
 
