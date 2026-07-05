@@ -1,128 +1,183 @@
 # Lab 002 - Domain Infrastructure
-#
-# Objective
-Build the first Windows Server in the environment.
-Configure the server to become the Active Directory
-Domain Controller for the lab.
-#
-# Lessons Learned
-2026-07-04 00:15:30 - Learned that LDAP stands for Lightweight Directory Access Protocol
-2026-06-29 21:09:37 - Found the command winget upgrade --all only pulls base updates.
-2026-06-29 21:09:25 - When building a VM, use custom setup - Brian M
-2026-06-29 21:08:25 - When the VM fails to image, just re-build since no Data is lost.
-#VM Hardware Specs
-Choose the Virtual Machine hardware Compatibility
-    Hardware compatibility: Workstation 25H2 or Later
 
-Guest OS Installation
-    I will install the OS later
+## Objective
 
-Select a Guest OS
-    Microsoft Windows
-    Version: Windows Server 2025
+Deploy the first Windows Server 2025 virtual machine and configure it as the primary Active Directory Domain Controller for the enterprise cybersecurity home lab.
 
-Name the Virtual Machine
-    VM name: DC01
-    Location: E:\VMs\Windows\DC01
+---
 
-Firmware Type
-    UEFI
+## Environment
 
-Processor Configuration
-    Number of processor: 2
-    Number of cores per processor: 2
+| Component | Configuration |
+|-----------|---------------|
+| VM Name | DC01 |
+| Operating System | Windows Server 2025 Standard Evaluation (Desktop Experience) |
+| Network | VMnet2 (Host-only) |
+| Subnet | 10.10.10.0/24 |
 
-Memory for the VM
-    6144 MB
+---
 
-Network Type
-    Use host-only networking
-        Updated to VMnet2 (Host-only) after inital creation inside VM Settings
+## VM Hardware Specifications
 
-Select I/O Controller Types
-    LSI Logic SAS
+| Component | Configuration |
+|-----------|---------------|
+| Hardware Compatibility | VMware Workstation 25H2 or later |
+| Guest OS | Windows Server 2025 |
+| Firmware | UEFI |
+| Processors | 2 |
+| Cores per Processor | 2 |
+| Memory | 6144 MB |
+| Network Adapter | VMnet2 (Host-only) |
+| I/O Controller | LSI Logic SAS |
+| Disk Type | SCSI |
+| Virtual Disk | 80 GB (Single File) |
 
-Select a Disk type
-    SCSI
+---
 
-Select a Disk
-    Create a new virtual disk
+## Server Configuration
 
-Specify Disk Capacity
-    Maximum disk size (GB): 80
-    Store Virtual disks as a single file
-#
-# Environment
+| Setting | Value |
+|---------|-------|
+| Hostname | DC01 |
+| Domain | lab.local |
+| Static IP | 10.10.10.10 |
+| Subnet Mask | 255.255.255.0 |
+| Default Gateway | None |
+| Preferred DNS | 10.10.10.10 |
+| Alternate DNS | None |
 
-VM Name: DC01
-Operating System: Windows Server 2025 Standard Evaluation(Desktop Experience)
-Network: VMnet2
-Subnet: 10.10.10.0/24
+---
 
-#
-# Configuration
-Hostname: DC01
-Domain: lab.local
-Static IP: 10.10.10.10
-Subnet Mask: 255.255.255.0
-Default Gateway: None
-Preferred DNS: 10.10.10.10
-Alternate DNS: None
+## Planned Server Roles
 
-#
-# Future Configuration
-Roles
+- Active Directory Domain Services (AD DS)
+- DNS Server
+- DHCP Server (Future Lab)
 
-- Active Directory Domain Services
-- DNS
-- DHCP (Later)
+---
 
-Snapshots
+## VM Snapshots
 
-- Fresh Install
-- Windows Updated
+- Fresh Installation
+- Windows Fully Updated
 - Static IP Configured
-- AD Installed
+- Active Directory Installed
 - Domain Controller Complete
 
-#
-# Build Log - Notes on actual build progress
-2026-07-04 00:54:16 - Configured Domain Controller, following AI Helper, created snapshot Completed Domain Controller.
-2026-07-04 00:12:04 - Finalized configuration, and elected to automatic restart without warning. 
-2026-07-04 00:11:13 - Installing AD Domain Services, and DNS using Add Roles and Features wizard.
-2026-07-04 00:10:52 - Verified Hostname is DC01, and ip of VM is 10.10.10.10
-2026-06-29 21:03:15 - Snapshot created for static IP and Hostname
-2026-06-29 21:02:19 - Using Settings > System tab, renamed computer to DC01
-2026-06-29 21:00:32 - Settings Static IP on Ethner0 using Network Connections from Control Panel - Brian M
-2026-06-29 21:00:19 - Removing VMnet8 network adapter from VM - Brian M
-2026-06-29 20:55:49 - Windows Updates completed, waiting for VM to reboot - Brian M
-2026-06-29 20:39:00 - Checking for more windows updates, VM found 4 new updates. - Brian M
-2026-06-29 20:37:30 - Used shutdown /r /t 0 command to restart VM - Brian M
-2026-06-29 20:32:26 - Executed winget upgrade --all coimmand in CMD - Brian M
-2026-06-29 20:31:57 - Added secondary network adapter using VNet 8 to grant internet access - Brian M
-2026-06-29 20:02:04 - Created Administrator account, credentials can be found in Personal Journal - Brian M
-2026-06-29 19:57:25 - Device is now sitting on Administrator Screen - Brian M
-2026-06-29 19:51:55 - Booting device into Windows 2025 Installation Media - Brian M
-2026-06-29 19:49:23 - Re-image failed, decided to rebuild VM from scratch. - Brian M
-2026-06-29 19:49:11 - Due to no data being on the VM, re-imaging VM - Brian M
-2026-06-29 19:48:39 - Updating VM settings to boot to windows ISO and setup Network controller. - Brian M
-2026-06-29 19:48:22 - Rebuild VM using custom settings (see VM hardware specs) - Brian M
-2026-06-29 19:29:54 - Reconnected Sever ISO and re-installed W2025 Server OS. - Brian M
-2026-06-29 19:13:37 - See VM Hardware Specs for VM details- Brian M
-2026-06-29 19:11:27 - Creating Virtual Machine - Brian M
-#
-# Observation Log - Things noticed during build process
-2026-06-29 20:52:45 - Device is running the last update for 2026-06 Security Update (KB5094125)(26100.32995)
-2026-06-29 20:02:33 - During creating an administrator password the password "Rotartsinimda" did not meet requirments - Brian M
-2026-06-29 19:55:47 - Device rebooted and seems to be booting into windows - Brian M
-2026-06-29 19:55:17 - Device currently at 77% marker - Brian M
-2026-06-29 19:54:46 - Device currently at 55% marker - Brian M
-2026-06-29 19:53:37 - Device currently at 30% marker - Brian M
-2026-06-29 19:52:36 - Device is currently imaging - Brian M
-#
-# Issues Encountered - Issues encountered during Build
+---
 
-2026-07-04 00:58:02 - Subnet mask was incorrectly configured as 255.0.0.0. Updated to 255.255.255.0 for the 10.10.10.0/24 lab network.
-2026-06-29 19:30:23 - Device is currently sitting on a black screen frozen. - Brian M
-2026-06-29 19:17:19 - When attempting to boot the VM we are getting Attempting to start up from: menu - Brian M
-2026-06-29 19:15:29 - During Windows installation the VM restarted and tried to boot back to CD/DVD. - Brian M
+## Current Status
+
+- [x] Windows Server 2025 installed
+- [x] Windows fully updated
+- [x] Static IP configured
+- [x] Hostname configured
+- [x] Active Directory Domain Services installed
+- [x] DNS Server installed
+- [x] Domain Controller promoted
+- [x] Post-installation snapshot created
+
+---
+
+## Build Log
+
+| Date & Time | Activity |
+|-------------|----------|
+| 2026-06-29 19:11 | Created Windows Server virtual machine. |
+| 2026-06-29 19:29 | Reinstalled Windows Server after rebuilding the VM. |
+| 2026-06-29 19:48 | Rebuilt VM using custom hardware configuration. |
+| 2026-06-29 19:49 | Updated VM boot configuration to use Windows Server installation media. |
+| 2026-06-29 19:51 | Booted into Windows Server installation. |
+| 2026-06-29 19:57 | Completed Windows installation and reached Administrator setup. |
+| 2026-06-29 20:02 | Created local Administrator account. |
+| 2026-06-29 20:31 | Added temporary VMnet8 adapter to provide Internet access. |
+| 2026-06-29 20:32 | Executed `winget upgrade --all`. |
+| 2026-06-29 20:37 | Restarted server after updates. |
+| 2026-06-29 20:39 | Installed additional Windows Updates. |
+| 2026-06-29 20:55 | Windows Updates completed successfully. |
+| 2026-06-29 21:00 | Removed temporary VMnet8 adapter. |
+| 2026-06-29 21:00 | Configured static IP address. |
+| 2026-06-29 21:02 | Renamed server to **DC01**. |
+| 2026-06-29 21:03 | Created snapshot after network configuration. |
+| 2026-07-04 00:10 | Verified hostname and network configuration. |
+| 2026-07-04 00:11 | Installed Active Directory Domain Services and DNS Server roles. |
+| 2026-07-04 00:12 | Completed Domain Controller promotion and restarted server. |
+| 2026-07-04 00:54 | Verified Domain Controller deployment and created final snapshot. |
+
+---
+
+## Issues Encountered
+
+### Windows Installation Boot Loop
+
+**Issue**
+
+During Windows installation, the virtual machine repeatedly attempted to boot from the installation media instead of the virtual hard disk.
+
+**Resolution**
+
+Reconfigured the VM boot order and rebuilt the virtual machine using custom hardware settings.
+
+---
+
+### Frozen Installation
+
+**Issue**
+
+The Windows installation became unresponsive and remained on a black screen.
+
+**Resolution**
+
+Deleted the virtual machine and recreated it from scratch since no production data had been stored.
+
+---
+
+### Incorrect Subnet Mask
+
+**Issue**
+
+The subnet mask was initially configured as **255.0.0.0**.
+
+**Resolution**
+
+Updated the configuration to **255.255.255.0** to match the **10.10.10.0/24** lab network.
+
+---
+
+## Observations
+
+- Windows Server required multiple cumulative updates immediately after installation.
+- A temporary NAT adapter simplified downloading updates before isolating the server on the Host-only network.
+- Active Directory Domain Services automatically installs several prerequisite components during deployment.
+- Multiple VM snapshots significantly reduced recovery time while building the environment.
+
+---
+
+## Lessons Learned
+
+- LDAP stands for **Lightweight Directory Access Protocol**.
+- `winget upgrade --all` installs application updates but does not replace Windows Update.
+- Building virtual machines using **Custom Configuration** provides greater flexibility than the default wizard.
+- Rebuilding a virtual machine is often faster than troubleshooting installation issues during the initial deployment phase when no data has been created.
+- Creating snapshots before major configuration changes provides reliable recovery points.
+
+---
+
+## Skills Demonstrated
+
+- VMware Virtual Machine Deployment
+- Windows Server 2025 Administration
+- Active Directory Domain Services
+- DNS Server Configuration
+- Static IP Configuration
+- Enterprise Server Deployment
+- Windows Update Management
+- Infrastructure Documentation
+
+---
+
+## Next Lab
+
+**Lab 003 - Active Directory Administration**
+
+Deploy organizational units, user accounts, security groups, and begin configuring enterprise Active Directory management.
