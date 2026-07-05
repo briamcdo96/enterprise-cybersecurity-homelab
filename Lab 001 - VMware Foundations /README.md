@@ -11,17 +11,18 @@ A Host-only network allows virtual machines to communicate with each other while
 Using an isolated subnet prevents accidental interaction with production devices on the home network.
 
 VMware's DHCP service can be used during the initial deployment phase before replacing it with a Windows DHCP server.
-
+#
 # Objective
 Build and configure the virtualization platform that
 will host the offensive security home lab.
-
+#
 # Environment
 Host OS: Windows 11 Pro
 CPU: Intel Core i9-14900
 RAM: 64GB DDR5
 Hypervisor: VMware Workstation Pro 25H2u1
 Lab Storage: E:\CyberSecurity Labs
+#
 # Current State
 Hardware Verified
 Intel VT-x Enabled
@@ -30,6 +31,7 @@ Folder Structure Created
 Virtual Network Editor Open
 VMnet2 Pending
 Default VM Location Pending
+#
 # Build Log
 2026-06-28 23:01:57 - Verified VMnet2 is enabled using ncpa.cpl command
 2026-06-28 22:57:43 - Did not have to change Subnet mask
@@ -40,6 +42,7 @@ Default VM Location Pending
 2026-06-28 22:05:14 - Installed VMware Workstation Pro 25H2u1.
 2026-06-28 21:52:11- Verified Intel VT-x is enabled through Task Manager.
 2026-06-28 21:45:00 - Verified host hardware using HWINFO64.
+#
 # Observations
 Host hardware exceeds the recommended specifications
 for running multiple Windows and Linux virtual machines.
