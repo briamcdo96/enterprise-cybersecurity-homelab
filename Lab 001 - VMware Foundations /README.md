@@ -11,11 +11,11 @@ A Host-only network allows virtual machines to communicate with each other while
 Using an isolated subnet prevents accidental interaction with production devices on the home network.
 
 VMware's DHCP service can be used during the initial deployment phase before replacing it with a Windows DHCP server.
-#
+
 # Objective
 Build and configure the virtualization platform that
 will host the offensive security home lab.
-#
+
 # Environment
 Host OS: Windows 11 Pro
 CPU: Intel Core i9-14900
