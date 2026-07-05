@@ -111,7 +111,7 @@ Snapshots
 2026-06-29 19:13:37 - See VM Hardware Specs for VM details- Brian M
 2026-06-29 19:11:27 - Creating Virtual Machine - Brian M
 #
-#Observation Log - Things noticed during build process
+# Observation Log - Things noticed during build process
 2026-06-29 20:52:45 - Device is running the last update for 2026-06 Security Update (KB5094125)(26100.32995)
 2026-06-29 20:02:33 - During creating an administrator password the password "Rotartsinimda" did not meet requirments - Brian M
 2026-06-29 19:55:47 - Device rebooted and seems to be booting into windows - Brian M
