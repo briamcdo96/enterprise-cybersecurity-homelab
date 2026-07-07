@@ -1,103 +1,165 @@
 # Lab 004 - Active Directory Administration
 
-## Lab Status
+## Objective
 
-| Item | Status |
-|---|---|
-| Status | Completed |
-| Completion Date | 2026-07-06 |
-| Time Spent | 1 hour 15 minutes |
-| Objective | Completed Successfully |
-| Verified By | Brian McDonald |
+Learn how Active Directory is organized and administered in an enterprise environment by designing a scalable Organizational Unit (OU) structure, implementing Security Groups using enterprise best practices, and creating administrative and standard user accounts.
 
 ---
 
-## Objective
+## Lab Status
 
-Learn how Active Directory is organized and administered in an enterprise environment.
-
-Design and implement a logical Organizational Unit structure.
-
-Create and organize Security Groups using enterprise best practices.
-
-Create administrative and standard domain user accounts.
-
-Understand the relationship between Organizational Units, Security Groups, and Active Directory permissions.
+| Item | Value |
+|------|-------|
+| Status | Completed |
+| Completion Date | 2026-07-06 |
+| Time Spent | 1 Hour 15 Minutes |
+| Result | Completed Successfully |
 
 ---
 
 ## Environment
 
-| Component | Value |
-|---|---|
+| Component | Configuration |
+|-----------|---------------|
 | Domain | lab.local |
 | Domain Controller | DC01 |
-| Client | CLIENT01 |
-| Server OS | Windows Server 2025 |
-| Client OS | Windows 11 Pro |
-| Network | VMnet2 / 10.10.10.0/24 |
+| Administrative Workstation | CLIENT01 |
+| Management Tool | Active Directory Users and Computers (ADUC) |
 
 ---
 
-## Final Active Directory Structure
+## Active Directory Structure
 
-```text
+### Organizational Units
+
+```
 lab.local
-|
+│
 ├── Administrative Accounts
 ├── Groups
-|   ├── Administrative Roles
-|   |   ├── Domain Administrators
-|   |   ├── Help Desk
-|   |   ├── Server Administrators
-|   |   └── Workstation Administrators
-|   |
-|   └── Departments
-|       ├── Finance
-|       ├── Human Resources
-|       ├── Information Technology
-|       └── Marketing
-|
+│   ├── Administrative Roles
+│   └── Departments
 ├── Servers
 ├── Service Accounts
-├── Users
 └── Workstations
     ├── Finance
     ├── Front Desk
-    |   └── CLIENT01
     ├── Human Resources
     ├── Information Technology
     ├── Marketing
     └── Training
+```
 
-2026-07-06 20:47:28 - Separate Department groups from Administrative Role groups. Department groups identify where a user belongs, while Administrative Role groups identify what permissions a user has.
+---
 
-2026-07-06 20:50:12 - Organizational Units organize Active Directory objects and are commonly used for Group Policy and delegation. Security Groups assign permissions and access.
+## Security Groups
 
-2026-07-06 20:51:35 - Renaming or moving a user between OUs does not affect Security Group membership.
+### Administrative Roles
 
-2026-07-06 20:52:18 - New Organizational Units are commonly protected from accidental deletion to prevent administrators from unintentionally removing large portions of Active Directory.
-Enable View > Advanced Features inside Active Directory Users and Computers.
+- Domain Administrators
+- Help Desk
+- Server Administrators
+- Workstation Administrators
 
-Open the OU Properties > Object tab.
-Uncheck "Protect object from accidental deletion."
-Apply changes and delete the OU if required.
+### Departments
 
-2026-07-06 21:01:39 - Added Information Technology group inside Groups > Departments.
-2026-07-06 21:00:02 - Deleted Server Administrator, Network Administrator, and Security Engineer groups after redesigning security group structure.
-2026-07-06 20:58:49 - Created Domain Administrators, Help Desk, Server Administrators, and Workstation Administrators groups inside Groups > Administrative Roles.
-2026-07-06 20:58:27 - Added Finance, Marketing, Human Resources, and Information Technology groups inside Groups > Departments.
-2026-07-06 20:58:06 - Created Administrative Roles and Departments Organizational Units inside Groups.
-2026-07-06 20:44:28 - Created Finance, Marketing, Human Resources, Information Technology, and Training Organizational Units inside Workstations.
-2026-07-06 20:36:13 - Moved CLIENT01 from Computers container to Workstations > Front Desk.
-2026-07-06 20:24:23 - Created standard domain user Betty Ross inside default Users container.
-2026-07-06 20:24:06 - Configured Betty Ross account so password never expires.
-2026-07-06 20:23:10 - Added James Bond to Domain Admins security group.
-2026-07-06 20:21:25 - Configured James Bond account so password never expires.
-2026-07-06 20:20:21 - Created personal administrator account James Bond inside Administrative Accounts OU.
-2026-07-06 20:14:11 - Created Administrative Accounts, Groups, Servers, Service Accounts, and Workstations Organizational Units.
+- Finance
+- Human Resources
+- Information Technology
+- Marketing
 
-2026-07-06 20:59:54 - Newly created Organizational Units are protected against accidental deletion by default.
-2026-07-06 21:02:14 - Separating Department groups from Administrative Role groups creates a cleaner and more scalable Active Directory design.
+---
 
-2026-07-06 20:49:34 - Accidentally enabled "Protect object from accidental deletion" on the wrong Organizational Unit. Renamed the OU to "Administrative" instead of deleting it.
+## User Accounts Created
+
+| Account | Type | Notes |
+|---------|------|------|
+| James Bond | Administrative Account | Added to **Domain Admins** |
+| Betty Ross | Standard User | Password configured to never expire |
+
+---
+
+## Current Status
+
+- [x] Organizational Unit structure created
+- [x] Administrative Security Groups created
+- [x] Department Security Groups created
+- [x] Administrative account created
+- [x] Standard domain user created
+- [x] CLIENT01 moved into Workstations OU
+- [x] Enterprise Active Directory structure verified
+
+---
+
+## Build Log
+
+| Date & Time | Activity |
+|-------------|----------|
+| 2026-07-06 20:14 | Created Organizational Units for Administrative Accounts, Groups, Servers, Service Accounts, and Workstations. |
+| 2026-07-06 20:20 | Created administrative user account **James Bond**. |
+| 2026-07-06 20:21 | Configured administrative account so the password never expires. |
+| 2026-07-06 20:23 | Added James Bond to the **Domain Admins** security group. |
+| 2026-07-06 20:24 | Created standard user account **Betty Ross**. |
+| 2026-07-06 20:24 | Configured Betty Ross account so the password never expires. |
+| 2026-07-06 20:36 | Moved **CLIENT01** from the default Computers container into the **Workstations → Front Desk** Organizational Unit. |
+| 2026-07-06 20:44 | Created departmental Organizational Units beneath **Workstations**. |
+| 2026-07-06 20:58 | Created **Administrative Roles** and **Departments** Organizational Units beneath **Groups**. |
+| 2026-07-06 20:58 | Created departmental Security Groups. |
+| 2026-07-06 20:58 | Created administrative Security Groups. |
+| 2026-07-06 21:00 | Removed previously created Security Groups after redesigning the Active Directory structure. |
+| 2026-07-06 21:01 | Added the Information Technology department Security Group. |
+
+---
+
+## Issues Encountered
+
+### Organizational Unit Protected from Deletion
+
+**Issue**
+
+An Organizational Unit was accidentally created with **Protect object from accidental deletion** enabled, preventing it from being removed.
+
+**Resolution**
+
+Enabled **View → Advanced Features** in Active Directory Users and Computers, opened the Organizational Unit properties, selected the **Object** tab, disabled accidental deletion protection, and removed or renamed the Organizational Unit as required.
+
+---
+
+## Observations
+
+- Newly created Organizational Units are protected from accidental deletion by default.
+- Separating **Department Security Groups** from **Administrative Role Security Groups** creates a cleaner and more scalable enterprise design.
+- Moving users or computers between Organizational Units does not affect their Security Group memberships.
+- Organizational Units are primarily used for Group Policy application and administrative delegation, while Security Groups control access and permissions.
+
+---
+
+## Lessons Learned
+
+- Department Security Groups should identify **where users belong**, while Administrative Role Security Groups define **what permissions users receive**.
+- Organizational Units provide logical organization for Active Directory objects and are commonly used for Group Policy deployment and delegated administration.
+- Security Groups are responsible for assigning permissions and controlling access to resources.
+- Moving or renaming objects within Organizational Units does not impact Security Group membership.
+- Organizational Units are protected against accidental deletion by default to reduce the risk of administrators unintentionally removing critical Active Directory infrastructure.
+
+---
+
+## Skills Demonstrated
+
+- Active Directory Administration
+- Organizational Unit Design
+- Enterprise Active Directory Architecture
+- Security Group Management
+- Administrative Account Management
+- User Account Administration
+- Active Directory Best Practices
+- Principle of Least Privilege
+- Enterprise Documentation
+
+---
+
+## Next Lab
+
+**Lab 005 - Group Policy Management**
+
+Design and implement Group Policy Objects (GPOs) to centrally manage user and computer configurations, enforce security settings, and automate enterprise workstation administration.
